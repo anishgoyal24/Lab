@@ -1,0 +1,201 @@
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| book               |
+| flights            |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+6 rows in set (0.08 sec)
+
+
+mysql> use book;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+Database changed
+
+
+
+mysql> show tables;
++----------------+
+| Tables_in_book |
++----------------+
+| Author         |
+| Book           |
+| Branch         |
+| Instock        |
+| Topic          |
++----------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from Book;
+Empty set (0.01 sec)
+
+mysql> select * from Author;
++---------------+-------------+------+
+| name          | citizenship | dob  |
++---------------+-------------+------+
+| George Orwell | American    | 1903 |
+| James Joyce   | American    | 1882 |
+| F,Scott       | Italian     | 1896 |
+| Leo           | Italian     | 1828 |
+| Leo           | Italian     | 1828 |
++---------------+-------------+------+
+5 rows in set (0.00 sec)
+
+mysql> delete from Author 
+    -> where name="Leo";
+Query OK, 2 rows affected (0.48 sec)
+
+mysql> select * from Author;
++---------------+-------------+------+
+| name          | citizenship | dob  |
++---------------+-------------+------+
+| George Orwell | American    | 1903 |
+| James Joyce   | American    | 1882 |
+| F,Scott       | Italian     | 1896 |
++---------------+-------------+------+
+3 rows in set (0.00 sec)
+
+mysql> insert into Author values("Leo","Italian","1828");
+Query OK, 1 row affected (0.52 sec)
+
+mysql> insert into Author values("Charles Dickens","American","1868");
+Query OK, 1 row affected (0.14 sec)
+
+mysql> insert into Author values("JK Rowling","American","1965");
+Query OK, 1 row affected (0.14 sec)
+
+mysql> select * from Author;
++-----------------+-------------+------+
+| name            | citizenship | dob  |
++-----------------+-------------+------+
+| George Orwell   | American    | 1903 |
+| James Joyce     | American    | 1882 |
+| F,Scott         | Italian     | 1896 |
+| Leo             | Italian     | 1828 |
+| Charles Dickens | American    | 1868 |
+| JK Rowling      | American    | 1965 |
++-----------------+-------------+------+
+6 rows in set (0.00 sec)
+
+mysql> insert into Book values("1234","peppy and beast","George Orwell");
+Query OK, 1 row affected (0.54 sec)
+
+mysql> select * from Book;
++------+-----------------+---------------+
+| isbn | title           | authorname    |
++------+-----------------+---------------+
+| 1234 | peppy and beast | George Orwell |
++------+-----------------+---------------+
+1 row in set (0.00 sec)
+
+mysql> insert into Book values("1235","The Dead","James Joyce");
+Query OK, 1 row affected (0.14 sec)
+
+mysql> insert into Book values("1435","Tender is the night","F,Scott");
+Query OK, 1 row affected (0.13 sec)
+
+mysql> insert into Book values("1335","The very best","Leo");
+Query OK, 1 row affected (0.14 sec)
+
+mysql> insert into Book values("2335","Oliver twist","Charles Dickens");
+Query OK, 1 row affected (0.14 sec)
+
+mysql> insert into Book values("2314","Harry Potter","JK Rowling");
+Query OK, 1 row affected (0.51 sec)
+
+mysql> select * from Book;
++------+---------------------+-----------------+
+| isbn | title               | authorname      |
++------+---------------------+-----------------+
+| 1234 | peppy and beast     | George Orwell   |
+| 1235 | The Dead            | James Joyce     |
+| 1435 | Tender is the night | F,Scott         |
+| 1335 | The very best       | Leo             |
+| 2335 | Oliver twist        | Charles Dickens |
+| 2314 | Harry Potter        | JK Rowling      |
++------+---------------------+-----------------+
+6 rows in set (0.00 sec)
+
+mysql> insert into Topic values("1234","Alcohol");
+Query OK, 1 row affected (0.49 sec)
+
+mysql> insert into Topic values("1235","Drugs");
+Query OK, 1 row affected (0.14 sec)
+
+mysql> insert into Topic values("1435","Fantasy");
+Query OK, 1 row affected (0.50 sec)
+
+mysql> insert into Topic values("1335","Autobiography");
+Query OK, 1 row affected (0.36 sec)
+
+mysql> insert into Topic values("2335","Comedy");
+Query OK, 1 row affected (0.14 sec)
+
+mysql> insert into Topic values("2314","Fiction");
+Query OK, 1 row affected (0.13 sec)
+
+mysql> select 8 from topic;
+ERROR 1146 (42S02): Table 'book.topic' doesn't exist
+mysql> select 8 from Topic;
++---+
+| 8 |
++---+
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
++---+
+6 rows in set (0.00 sec)
+
+mysql> select * from Topic;
++------+---------------+
+| isbn | subject       |
++------+---------------+
+| 1234 | Alcohol       |
+| 1235 | Drugs         |
+| 1435 | Fantasy       |
+| 1335 | Autobiography |
+| 2335 | Comedy        |
+| 2314 | Fiction       |
++------+---------------+
+6 rows in set (0.01 sec)
+
+mysql> insert into Branch values("Alice Spring","Australia");
+Query OK, 1 row affected (0.51 sec)
+
+mysql> insert into Branch values("Aloghar","Bangladesh");
+Query OK, 1 row affected (0.15 sec)
+
+mysql> insert into Branch values("Cambridge","England");
+Query OK, 1 row affected (0.15 sec)
+
+mysql> insert into Branch values("Changhua","Sydney");
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into Branch values("Centre of Public Library","Melbourne");
+ERROR 1406 (22001): Data too long for column 'libname' at row 1
+mysql> insert into Branch values("Centre of Public Lib","Melbourne");
+Query OK, 1 row affected (0.48 sec)
+
+mysql> select * from Branch;
++----------------------+------------+
+| libname              | city       |
++----------------------+------------+
+| Alice Spring         | Australia  |
+| Aloghar              | Bangladesh |
+| Cambridge            | England    |
+| Changhua             | Sydney     |
+| Centre of Public Lib | Melbourne  |
++----------------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> 
+
