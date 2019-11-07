@@ -1,0 +1,407 @@
+archit@archit-ubuntu:~$ sudo mysql
+[sudo] password for archit: 
+Sorry, try again.
+[sudo] password for archit: 
+Sorry, try again.
+[sudo] password for archit: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2
+Server version: 5.7.23-0ubuntu0.18.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show datbases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'datbases' at line 1
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| book               |
+| flights            |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+6 rows in set (0.14 sec)
+
+mysql> use flights;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_flights |
++-------------------+
+| flights           |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> drop flights;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'flights' at line 1
+mysql> select * from floghts;
+ERROR 1146 (42S02): Table 'flights.floghts' doesn't exist
+mysql> select * from flights;
+Empty set (0.00 sec)
+
+mysql> drop table flights;
+Query OK, 0 rows affected (0.70 sec)
+
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> create table Flight(flight_num int, source varchar(30), destination varchar(30), distance int, departure time);
+Query OK, 0 rows affected (0.44 sec)
+
+mysql> create table Aircraft( aircraft_ID varchar(30),aircraft_name varchar(30), aircraft_Range int);
+Query OK, 0 rows affected (0.44 sec)
+
+mysql> create table Employee(emp_ID varchar(30),emp_Name varchar(30),Salary int);
+Query OK, 0 rows affected (0.39 sec)
+
+mysql> create table Certified(emp_ID varchar(30), aircraft_ID varchar(30));
+Query OK, 0 rows affected (0.39 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_flights |
++-------------------+
+| Aircraft          |
+| Certified         |
+| Employee          |
+| Flight            |
++-------------------+
+4 rows in set (0.01 sec)
+
+mysql> insert into Flight values(764,"DELHI","MUMBAI",1500,"00:15:00");
+Query OK, 1 row affected (0.13 sec)
+
+mysql> 
+mysql> insert into Flight values(727,"DELHI","CHENNAI",2500,"01:35:00"),(781,"DELHI","KOLKATA",1300,"02:23:00");
+Query OK, 2 rows affected (0.06 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> 
+mysql> insert into Flight values(534,"CHENNAI","BHOPAL",1700,"05:40:00"),(134,"AMRITSAR","JAMMU",700,"07:41:00"),(443,"DELHI","LONDON",5300,"09:12:00");
+Query OK, 3 rows affected (0.15 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> 
+mysql> insert into Flight values(666,"CHENNAI","NEW YORK",12000,"12:05:00"),(888,"AMRITSAR","TOKYO",6700,"14:30:00"),(991,"DELHI","HAVANA",13550,"18:10:00");
+Query OK, 3 rows affected (0.04 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> 
+mysql> insert into Flight values(125,"BANGLORE","CHICAGO",14000,"20:05:00"),(456,"JAMMU","MOSCOW",7700,"22:30:00");
+Query OK, 2 rows affected (0.13 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from flights;
+ERROR 1146 (42S02): Table 'flights.flights' doesn't exist
+mysql> select * from Flight;
++------------+----------+-------------+----------+-----------+
+| flight_num | source   | destination | distance | departure |
++------------+----------+-------------+----------+-----------+
+|        764 | DELHI    | MUMBAI      |     1500 | 00:15:00  |
+|        727 | DELHI    | CHENNAI     |     2500 | 01:35:00  |
+|        781 | DELHI    | KOLKATA     |     1300 | 02:23:00  |
+|        534 | CHENNAI  | BHOPAL      |     1700 | 05:40:00  |
+|        134 | AMRITSAR | JAMMU       |      700 | 07:41:00  |
+|        443 | DELHI    | LONDON      |     5300 | 09:12:00  |
+|        666 | CHENNAI  | NEW YORK    |    12000 | 12:05:00  |
+|        888 | AMRITSAR | TOKYO       |     6700 | 14:30:00  |
+|        991 | DELHI    | HAVANA      |    13550 | 18:10:00  |
+|        125 | BANGLORE | CHICAGO     |    14000 | 20:05:00  |
+|        456 | JAMMU    | MOSCOW      |     7700 | 22:30:00  |
++------------+----------+-------------+----------+-----------+
+11 rows in set (0.00 sec)
+
+mysql> 
+mysql> insert into Aircraft values("BG787","BOEING 787",20000),("BG555","BOEING 555",25000),("BG645","BOEING 645",30000),("ABA122","AIRBUS A122",30000),("ABA320","AIRBUS A320",40000),("ABC480","AIRBUS C480",40000);
+Query OK, 6 rows affected (0.15 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> 
+mysql> 
+mysql> insert into Employee values("CAP214","ABC",200000),("AH112","ISX",70000),("COP654","MJH",175000),("CAP452","BDH",200000),("AH324","MLS",70000),("COP526","USH",175000);
+Query OK, 6 rows affected (0.15 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> 
+mysql> insert into Certified values("CAP214","BG787"),("AH112","BG555"),("COP654","BG645"),("CAP452","ABA122"),("AH324","ABA320"),("COP526","ABC480");
+Query OK, 6 rows affected (0.12 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from Aircraft;
++-------------+---------------+----------------+
+| aircraft_ID | aircraft_name | aircraft_Range |
++-------------+---------------+----------------+
+| BG787       | BOEING 787    |          20000 |
+| BG555       | BOEING 555    |          25000 |
+| BG645       | BOEING 645    |          30000 |
+| ABA122      | AIRBUS A122   |          30000 |
+| ABA320      | AIRBUS A320   |          40000 |
+| ABC480      | AIRBUS C480   |          40000 |
++-------------+---------------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from Employee;
++--------+----------+--------+
+| emp_ID | emp_Name | Salary |
++--------+----------+--------+
+| CAP214 | ABC      | 200000 |
+| AH112  | ISX      |  70000 |
+| COP654 | MJH      | 175000 |
+| CAP452 | BDH      | 200000 |
+| AH324  | MLS      |  70000 |
+| COP526 | USH      | 175000 |
++--------+----------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select * from Certified;
++--------+-------------+
+| emp_ID | aircraft_ID |
++--------+-------------+
+| CAP214 | BG787       |
+| AH112  | BG555       |
+| COP654 | BG645       |
+| CAP452 | ABA122      |
+| AH324  | ABA320      |
+| COP526 | ABC480      |
++--------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> select Employees.eid from Employees,Certified,Aircraft
+    -> where (Employees.eid=Certified.eid) and (Certified.aid=Aircraft.aid) and (Aircraft.aname like 'BOEING%') ;
+ERROR 1146 (42S02): Table 'flights.Employees' doesn't exist
+mysql> select Employee.eid from Employee,Certified,Aircraft where (Employee.eid=Certified.eid) and (Certified.aid=Aircraft.aid) and (Aircraft.aname like 'BOEING%');
+ERROR 1054 (42S22): Unknown column 'Employee.eid' in 'field list'
+mysql> select Employee.emp_ID from Employee,Certified,Aircraft where (Employee.emp_ID=Certified.emp_ID) and (Certified.aircraft_ID=Aircraft.aircraft_ID) and (Aircraft.aircraft_name like 'BOEING%');
++--------+
+| emp_ID |
++--------+
+| CAP214 |
+| AH112  |
+| COP654 |
++--------+
+3 rows in set (0.01 sec)
+
+mysql> 
+mysql> select Employee.emp_Name from Employee,Certified,Aircraft where (Employee.emp_ID=Certified.emp_ID) and (Certified.aircraft_ID=Aircraft.aircraft_ID) and (Aircraft.aircraft_name like 'BOEING%');
++----------+
+| emp_Name |
++----------+
+| ABC      |
+| ISX      |
+| MJH      |
++----------+
+3 rows in set (0.00 sec)
+
+mysql> 
+mysql> select Aircraft.aircraft_ID from Aircraft,Flight 
+    -> where Aircraft.aircraft_Range>Flight.distance and (Flight.source="AMRITSAR" and Flight.destination="TOKYO");
++-------------+
+| aircraft_ID |
++-------------+
+| BG787       |
+| BG555       |
+| BG645       |
+| ABA122      |
+| ABA320      |
+| ABC480      |
++-------------+
+6 rows in set (0.00 sec)
+
+mysql> 
+mysql> select Employee.emp_name from Employee,Aircraft,Certified
+    -> where (Employee.emp_ID=Certified.emp_ID) and (Certified.aircraft_ID=Aircraft.aircraft_ID) and (Aircraft.aircraft_Range>3000) and (Aircraft.aircraft_name not like "Boeing%");
++----------+
+| emp_name |
++----------+
+| BDH      |
+| MLS      |
+| USH      |
++----------+
+3 rows in set (0.00 sec)
+
+mysql> select emp_ID from Employee
+    -> where max(Salary);
+ERROR 1111 (HY000): Invalid use of group function
+mysql> select emp_ID,max(Salary) from Employee ;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'flights.Employee.emp_ID'; this is incompatible with sql_mode=only_full_group_by
+mysql> select max(Salary) from Employee ;
++-------------+
+| max(Salary) |
++-------------+
+|      200000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select max(Salary),emp_ID from Employee ;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #2 of SELECT list contains nonaggregated column 'flights.Employee.emp_ID'; this is incompatible with sql_mode=only_full_group_by
+mysql> select emp_ID( max(Salary)) from Employee ;
+ERROR 1305 (42000): FUNCTION flights.emp_ID does not exist
+mysql> select emp_ID from Employee 
+    -> where (salary=(select max(salary) from Employee);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> select emp_ID from Employee  where salary=(select max(salary) from Employee);
++--------+
+| emp_ID |
++--------+
+| CAP214 |
+| CAP452 |
++--------+
+2 rows in set (0.00 sec)
+
+mysql> select Employee.emp_ID from Employee, Certified
+    -> where (Employee.emp_ID=Certified.emp_ID) and (select count(*) from Employee,Aircraft)=3;
+Empty set (0.00 sec)
+
+mysql> insert into Certified values("CAP214","BG555");
+Query OK, 1 row affected (0.51 sec)
+
+mysql> insert into Certified values("CAP214","BG645");
+Query OK, 1 row affected (0.12 sec)
+
+mysql> select * from Certified;
++--------+-------------+
+| emp_ID | aircraft_ID |
++--------+-------------+
+| CAP214 | BG787       |
+| AH112  | BG555       |
+| COP654 | BG645       |
+| CAP452 | ABA122      |
+| AH324  | ABA320      |
+| COP526 | ABC480      |
+| CAP214 | BG555       |
+| CAP214 | BG645       |
++--------+-------------+
+8 rows in set (0.00 sec)
+
+mysql> select Employee.emp_ID from Employee, Certified where (Employee.emp_ID=Certified.emp_ID) and (select count(*) from Employee,Aircraft)=3;
+Empty set (0.00 sec)
+
+mysql> select Employee.emp_ID from Employee, Certified where (Employee.emp_ID=Certified.emp_ID) and (select count(Employee.emp_ID=Certified.emp_ID) from Employee,Certified)=3);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> 
+mysql> select Employee.emp_ID from Employee, Certified where (Employee.emp_ID=Certified.emp_ID) and (select count(Employee.emp_ID=Certified.emp_ID) from Employee,Certified)=3;
+Empty set (0.00 sec)
+
+mysql> select count(Employee.emp_ID=Certified.emp_ID) from Employee,Certified
+    -> where (Employee.emp_ID=Certified.emp_ID);
++-----------------------------------------+
+| count(Employee.emp_ID=Certified.emp_ID) |
++-----------------------------------------+
+|                                       8 |
++-----------------------------------------+
+1 row in set (0.01 sec)
+
+mysql> select count(Employee.emp_ID=Certified.emp_ID) from Employee,Certified where (Employee.emp_ID=Certified.emp_ID)=3;
++-----------------------------------------+
+| count(Employee.emp_ID=Certified.emp_ID) |
++-----------------------------------------+
+|                                       0 |
++-----------------------------------------+
+1 row in set (0.01 sec)
+
+mysql> select count(Certified.emp_ID) from Employee,Certified where (Employee.emp_ID=Certified.emp_ID) ;
++-------------------------+
+| count(Certified.emp_ID) |
++-------------------------+
+|                       8 |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> select amp_ID from (select emp_ID,count(emp_ID) as ct from
+    -> Certified group by emp_ID) as tab where ct=3;
+ERROR 1054 (42S22): Unknown column 'amp_ID' in 'field list'
+mysql> select emp_ID from (select emp_ID,count(emp_ID) as ct from Certified group by emp_ID) as tab where ct=3;
++--------+
+| emp_ID |
++--------+
+| CAP214 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select emp_ID from Employee where
+    -> (select salary from Employee where salary<max(salary));
+ERROR 1111 (HY000): Invalid use of group function
+mysql> select emp_ID from Employee where (select salary from Employee where salary<(select max(salary) from Employee));
+ERROR 1242 (21000): Subquery returns more than 1 row
+mysql> select emp_ID from Employee where (select max((select salary from Employee where salary<(select max(salary) from Employee))) from Employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> 
+
+archit@archit-ubuntu:~$ sudo mysql;
+[sudo] password for archit: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2
+Server version: 5.7.23-0ubuntu0.18.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| book               |
+| flights            |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+6 rows in set (0.08 sec)
+
+mysql> use flights
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_flights |
++-------------------+
+| Aircraft          |
+| Certified         |
+| Employee          |
+| Flight            |
++-------------------+
+4 rows in set (0.00 sec)
+
+mysql> select emp_ID from Employee where (select max((select salary from Employee where salary<(select max(salary) from Employee))) from Employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> ;                                                           
+;
+^C
+mysql> select emp_ID from Employee where 
+    -> salary = (select max(salary) from employee where salary<(select max(salary) from employee);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> select emp_ID from Employee where salary = (select max(salary) from employee where salary<(select max(salary) from employee));
+ERROR 1146 (42S02): Table 'flights.employee' doesn't exist
+mysql> select emp_ID from Employee where salary = (select max(salary) from employee where salary<(select max(salary) from Employee));
+ERROR 1146 (42S02): Table 'flights.employee' doesn't exist
+mysql> select emp_ID from Employee where salary = (select max(salary) from Employee where salary<(select max(salary) from Employee));
++--------+
+| emp_ID |
++--------+
+| COP654 |
+| COP526 |
++--------+
+2 rows in set (0.00 sec)
+
+mysql> 
+
